@@ -1,26 +1,662 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Coutiv</title>
-  <link rel="stylesheet" href="/styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coutiv — Discover fashion together</title>
+<meta name="description" content="Coutiv is the AI-powered fashion discovery app made for sharing. Get personalized picks, build groups, and shop with your friends.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #18181B;
+    --ink-soft: #6B6B73;
+    --violet: #8B5CF6;
+    --violet-deep: #7C3AED;
+    --violet-pale: #F3EEFF;
+    --line: #E7E5EA;
+    --black: #0A0A0B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.06;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0;
+  }
+  .logo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+  }
+  .nav-cta {
+    background: var(--violet);
+    color: #fff;
+    padding: 11px 22px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover { background: var(--violet-deep); }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 84px 0 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 0.92fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--violet-deep);
+    background: var(--violet-pale);
+    padding: 7px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .eyebrow::before {
+    content: '✦';
+    font-size: 11px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 4.6vw, 56px);
+    margin-bottom: 20px;
+  }
+  .hero h1 span {
+    background: linear-gradient(100deg, var(--violet) 0%, #6D28D9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p.lede {
+    font-size: 17.5px;
+    color: var(--ink-soft);
+    max-width: 440px;
+    margin-bottom: 32px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--violet);
+    color: #fff;
+    padding: 15px 28px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.18s ease, background 0.2s ease;
+  }
+  .btn-primary:hover { background: var(--violet-deep); transform: translateY(-1px); }
+  .btn-secondary {
+    border: 1.5px solid var(--ink);
+    padding: 14px 26px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.18s ease;
+  }
+  .btn-secondary:hover { background: var(--violet-pale); border-color: var(--violet); }
+
+  /* Phone mock - reflecting the real app's feed */
+  .phone-mock {
+    position: relative;
+    background: var(--black);
+    border-radius: 36px;
+    padding: 14px;
+    max-width: 320px;
+    margin: 0 auto;
+    box-shadow: 0 30px 70px -24px rgba(24,24,27,0.35);
+  }
+  .phone-screen {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 9/18.5;
+  }
+  .phone-ai-bar {
+    background: var(--violet-pale);
+    padding: 16px 16px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .phone-ai-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--violet-deep);
+    margin-bottom: 8px;
+  }
+  .phone-ai-input {
+    background: #fff;
+    border-radius: 100px;
+    padding: 10px 14px;
+    font-size: 11px;
+    color: #A0A0A8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .phone-ai-input .send {
+    width: 22px; height: 22px;
+    background: var(--violet);
+    border-radius: 50%;
+  }
+  .phone-section-label {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 14px 16px 4px;
+  }
+  .phone-section-sub {
+    font-size: 10px;
+    color: var(--ink-soft);
+    padding: 0 16px 10px;
+  }
+  .phone-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0 16px 16px;
+  }
+  .phone-card {
+    border-radius: 12px;
+    aspect-ratio: 3/4;
+    background-size: cover;
+    background-position: center;
+  }
+  .phone-card-label {
+    margin-top: 4px;
+    font-size: 8.5px;
+    color: var(--ink-soft);
+  }
+  .phone-card-price {
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how {
+    padding: 96px 0;
+    border-top: 1px solid var(--line);
+  }
+  .section-head {
+    max-width: 540px;
+    margin-bottom: 56px;
+  }
+  .section-head .eyebrow { margin-bottom: 16px; }
+  .section-head h2 {
+    font-size: clamp(28px, 3.2vw, 40px);
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .step-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--violet-pale);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 19px;
+  }
+  .step h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .step p {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+  }
+
+  /* ---------- GROUPS SHOWCASE ---------- */
+  .showcase {
+    padding: 96px 0;
+    background: #FAFAFA;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .group-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 20px 50px -28px rgba(24,24,27,0.18);
+  }
+  .group-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+  .group-card-top h4 { font-size: 16px; font-weight: 700; }
+  .group-card-top span { font-size: 12px; color: var(--ink-soft); }
+  .group-card-imgs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .group-card-imgs div {
+    aspect-ratio: 3/4;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+  }
+  .budget-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--violet-deep);
+    margin-bottom: 6px;
+  }
+  .budget-bar {
+    height: 6px;
+    border-radius: 100px;
+    background: var(--violet-pale);
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .budget-bar div { height: 100%; background: var(--violet); border-radius: 100px; }
+  .group-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+  }
+
+  .showcase-copy h2 { font-size: clamp(26px, 3vw, 36px); margin-bottom: 18px; }
+  .showcase-copy p { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 28px; max-width: 420px; }
+  .pill-list { display: flex; flex-direction: column; gap: 16px; }
+  .pill-item { display: flex; gap: 14px; align-items: flex-start; }
+  .pill-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--violet);
+    margin-top: 8px; flex-shrink: 0;
+  }
+  .pill-item strong { font-weight: 700; }
+  .pill-item span { color: var(--ink-soft); display: block; font-size: 13.5px; margin-top: 2px; }
+
+  /* ---------- DOWNLOAD / EMAIL ---------- */
+  .download {
+    padding: 100px 0;
+    text-align: center;
+  }
+  .download h2 {
+    font-size: clamp(32px, 4.2vw, 48px);
+    max-width: 620px;
+    margin: 0 auto 18px;
+  }
+  .download p.sub {
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    margin-bottom: 40px;
+  }
+  .store-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+  .store-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--black);
+    color: #fff;
+    padding: 13px 24px;
+    border-radius: 14px;
+    font-size: 14px;
+    transition: background 0.2s ease, transform 0.18s ease;
+  }
+  .store-btn:hover { background: var(--violet-deep); transform: translateY(-1px); }
+  .store-btn .store-text { text-align: left; line-height: 1.2; }
+  .store-btn .store-text small { display: block; font-size: 10px; opacity: 0.75; }
+  .store-btn .store-text strong { font-size: 15px; font-weight: 700; }
+
+  .email-form {
+    max-width: 420px;
+    margin: 0 auto;
+    border-top: 1px solid var(--line);
+    padding-top: 44px;
+  }
+  .email-form p {
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+  }
+  .email-row { display: flex; gap: 10px; }
+  .email-row input {
+    flex: 1;
+    padding: 14px 18px;
+    border-radius: 100px;
+    border: 1.5px solid var(--line);
+    background: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.18s ease;
+  }
+  .email-row input:focus { border-color: var(--violet); }
+  .email-row button {
+    background: var(--violet);
+    color: #fff;
+    border: none;
+    padding: 0 26px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .email-row button:hover { background: var(--violet-deep); }
+  .form-msg { font-size: 13px; margin-top: 14px; color: var(--ink-soft); min-height: 18px; }
+
+  /* ---------- FOOTER ---------- */
+  footer { border-top: 1px solid var(--line); padding: 36px 0; }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .footer-links { display: flex; gap: 24px; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+    .steps { grid-template-columns: 1fr; gap: 36px; }
+    .showcase-grid { grid-template-columns: 1fr; gap: 40px; }
+    .showcase-copy { order: 2; }
+    .showcase-visual { order: 1; }
+    .footer-inner { flex-direction: column; gap: 14px; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 20px; }
+    .hero { padding: 52px 0 44px; }
+    .email-row { flex-direction: column; }
+    .email-row button { padding: 14px; }
+    .store-buttons { flex-direction: column; align-items: stretch; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--violet-deep);
+    outline-offset: 2px;
+  }
+</style>
 </head>
 <body>
-  <main class="container">
-    <h1>Coutiv</h1>
-    <p>
-      Welcome to Coutiv!
 
-Coutiv is a technology company building consumer software products. Our first mobile application is currently in development.
+<div id="gate" style="position:fixed; inset:0; background:#fff; z-index:9999; display:flex; align-items:center; justify-content:center; padding:24px;">
+  <form id="gate-form" style="max-width:320px; width:100%; text-align:center;">
+    <div style="font-size:19px; font-weight:800; letter-spacing:0.22em; margin-bottom:28px;">COUTIV</div>
+    <input type="password" id="gate-password" placeholder="Enter password" style="width:100%; padding:14px 18px; border-radius:100px; border:1.5px solid #E7E5EA; font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; outline:none; margin-bottom:14px; text-align:center;">
+    <button type="submit" style="width:100%; background:#8B5CF6; color:#fff; border:none; padding:14px; border-radius:100px; font-size:14px; font-weight:600; font-family:'Plus Jakarta Sans',sans-serif; cursor:pointer;">Enter</button>
+    <div id="gate-error" style="color:#D94B5C; font-size:13px; margin-top:12px; min-height:18px;"></div>
+  </form>
+</div>
 
-Contact: hq@coutiv.com
+<div id="site-content" style="display:none;">
 
-    </p>
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">COUTIV</div>
+    <a href="#download" class="nav-cta">Get the app</a>
+  </div>
+</nav>
 
-    <footer>
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow">Now in beta</div>
+      <h1>Fashion discovery,<br><span>styled by AI and friends.</span></h1>
+      <p class="lede">Coutiv finds pieces made for your taste, then helps you build outfits and shop them together with the people whose opinion you actually trust.</p>
+      <div class="hero-ctas">
+        <a href="#download" class="btn-primary">Get early access →</a>
+        <a href="#how" class="btn-secondary">See how it works</a>
+      </div>
+    </div>
+
+    <div class="phone-mock">
+      <div class="phone-screen">
+        <div class="phone-ai-bar">
+          <div class="phone-ai-label">✦ AI Styling Assistant</div>
+          <div class="phone-ai-input">
+            <span>Show me cozy winter outfits…</span>
+            <div class="send"></div>
+          </div>
+        </div>
+        <div class="phone-section-label">FOR YOU</div>
+        <div class="phone-section-sub">Personalized picks just for you</div>
+        <div class="phone-grid">
+          <div>
+            <div class="phone-card" style="background-color:#2C3242;"></div>
+            <div class="phone-card-label">J.CREW</div>
+            <div class="phone-card-price">$178</div>
+          </div>
+          <div>
+            <div class="phone-card" style="background-color:#E9C9CE;"></div>
+            <div class="phone-card-label">J.CREW</div>
+            <div class="phone-card-price">$98</div>
+          </div>
+          <div>
+            <div class="phone-card" style="background-color:#B8B0A2;"></div>
+            <div class="phone-card-label">J.CREW</div>
+            <div class="phone-card-price">$178</div>
+          </div>
+          <div>
+            <div class="phone-card" style="background-color:#E9CDD6;"></div>
+            <div class="phone-card-label">J.CREW</div>
+            <div class="phone-card-price">$148</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Shopping alone was never the fun part.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-icon">✦</div>
+        <h3>Discover with AI</h3>
+        <p>Tell the styling assistant what you're after, or just browse a feed shaped by your taste — not generic trends.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">◐</div>
+        <h3>Save and share</h3>
+        <p>Bookmark what you love and send it straight into a group thread. No more screenshots and lost conversations.</p>
+      </div>
+      <div class="step">
+        <div class="step-icon">◇</div>
+        <h3>Shop it together</h3>
+        <p>Track a shared budget, vote on picks, and turn saved pieces into outfits your whole group actually agrees on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="showcase">
+  <div class="wrap showcase-grid">
+    <div class="showcase-copy">
+      <h2>Built for the group chat that's already styling you.</h2>
+      <p>You already send outfit pics to your friends before you buy. Coutiv turns that into shared groups with budgets, polls, and a running feed — without the lost screenshots.</p>
+      <div class="pill-list">
+        <div class="pill-item">
+          <div class="pill-dot"></div>
+          <div><strong>Shared groups</strong><span>Plan a trip, an event, or just everyday shopping together</span></div>
+        </div>
+        <div class="pill-item">
+          <div class="pill-dot"></div>
+          <div><strong>Budget tracking</strong><span>See spend vs. budget for the group at a glance</span></div>
+        </div>
+        <div class="pill-item">
+          <div class="pill-dot"></div>
+          <div><strong>Built-in chat</strong><span>Vote and react on picks without leaving the app</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="showcase-visual">
+      <div class="group-card">
+        <div class="group-card-top">
+          <div>
+            <h4>Holiday Party</h4>
+            <span>Byeolbyeol</span>
+          </div>
+        </div>
+        <div class="group-card-imgs">
+          <div style="background-color:#2C3242;"></div>
+          <div style="background-color:#B8B0A2;"></div>
+          <div style="background-color:#1A1A1A;"></div>
+        </div>
+        <div class="budget-label"><span>SPEND / BUDGET</span><span>$2,016 / $500</span></div>
+        <div class="budget-bar"><div style="width:100%; background:#D94B5C;"></div></div>
+        <div class="group-meta">
+          <span>👥 2</span><span>✅ 10</span><span>💬 3</span><span>🗂 8</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="download" id="download">
+  <div class="wrap">
+    <h2>Be the first to try Coutiv.</h2>
+    <p class="sub">We're in beta on iOS and Android — request access below.</p>
+
+    <div class="store-buttons">
+      <a href="#" class="store-btn" id="ios-btn">
+        <span class="store-text"><small>Request access on</small><strong>TestFlight</strong></span>
+      </a>
+      <a href="#" class="store-btn" id="android-btn">
+        <span class="store-text"><small>Request access on</small><strong>Google Play</strong></span>
+      </a>
+    </div>
+
+    <div class="email-form">
+      <p>Or join the waitlist</p>
+      <form id="waitlist-form">
+        <div class="email-row">
+          <input type="email" id="email-input" placeholder="you@email.com" required>
+          <button type="submit">Notify me</button>
+        </div>
+      </form>
+      <div class="form-msg" id="form-msg"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>© 2026 Coutiv Inc.</div>
+    <div class="footer-links">
       <a href="/support.html">Support</a>
       <a href="/privacy.html">Privacy Policy</a>
-    </footer>
-  </main>
+      <a href="mailto:hq@coutiv.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  // Simple password gate — not real security, just keeps casual visitors out
+  const SITE_PASSWORD = "coutivbeta";
+
+  document.getElementById('gate-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const input = document.getElementById('gate-password').value;
+    const error = document.getElementById('gate-error');
+    if (input === SITE_PASSWORD) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('site-content').style.display = 'block';
+    } else {
+      error.textContent = "Incorrect password";
+    }
+  });
+
+  document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email-input').value;
+    const msg = document.getElementById('form-msg');
+    msg.textContent = "Thanks — we'll be in touch at " + email;
+    document.getElementById('email-input').value = '';
+  });
+</script>
+
 </body>
 </html>
