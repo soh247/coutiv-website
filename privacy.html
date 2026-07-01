@@ -1,32 +1,279 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Privacy Policy</title>
-  <link rel="stylesheet" href="/styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Coutiv</title>
+<meta name="description" content="Coutiv Privacy Policy — effective July 14, 2026">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #18181B;
+    --ink-soft: #6B6B73;
+    --violet: #8B5CF6;
+    --violet-deep: #7C3AED;
+    --violet-pale: #F3EEFF;
+    --line: #E7E5EA;
+    --black: #0A0A0B;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--violet); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 32px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center;
+    justify-content: space-between; padding: 20px 0;
+  }
+  .logo { font-size: 17px; font-weight: 800; letter-spacing: 0.22em; color: var(--ink); text-decoration: none; }
+  .nav-back { font-size: 13px; color: var(--ink-soft); }
+  .nav-back:hover { color: var(--violet); text-decoration: none; }
+
+  .doc-header {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+  .doc-header .badge {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--violet-deep);
+    background: var(--violet-pale);
+    padding: 5px 12px; border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .doc-header h1 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.1; margin-bottom: 16px;
+  }
+  .doc-meta {
+    font-size: 13px; color: var(--ink-soft);
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+
+  .doc-body { padding-bottom: 96px; }
+  .doc-body h2 {
+    font-size: 18px; font-weight: 700;
+    margin: 48px 0 14px;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+  .doc-body h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  .doc-body h3 {
+    font-size: 15px; font-weight: 700;
+    margin: 24px 0 10px; color: var(--ink);
+  }
+  .doc-body p { font-size: 15px; color: var(--ink-soft); margin-bottom: 14px; }
+  .doc-body ul {
+    margin: 10px 0 16px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .doc-body ul li { font-size: 15px; color: var(--ink-soft); }
+  .doc-body strong { color: var(--ink); font-weight: 600; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0;
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: var(--ink-soft); }
+  .footer-links a:hover { color: var(--violet); text-decoration: none; }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 0 20px; }
+    .doc-header { padding: 40px 0 32px; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
 <body>
-  <main class="container">
+
+<nav>
+  <div class="wrap nav-inner">
+    <a href="/" class="logo">COUTIV</a>
+    <a href="/" class="nav-back">← Back to home</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="doc-header">
+    <div class="badge">Legal</div>
     <h1>Privacy Policy</h1>
+    <div class="doc-meta">
+      <span>Effective July 14, 2026</span>
+      <span>Version v1.1</span>
+      <span>Coutiv Inc. · Ontario, Canada</span>
+    </div>
+  </div>
 
-    <p>
-      Coutiv respects your privacy.
-    </p>
+  <div class="doc-body">
 
-    <p>
-      We do not sell personal data. Any information collected is used only
-      to provide and improve the app experience.
-    </p>
+    <h2>1. Who We Are</h2>
+    <p>Coutiv Inc. ("Coutiv," "we," "us," or "our") is a corporation incorporated in Ontario, Canada. We operate a fashion discovery, personalization, and social shopping application (the "App") and associated website at coutiv.com (together, the "Service").</p>
+    <p>This Privacy Policy explains what personal information we collect, why we collect it, how we use and protect it, and what rights you have. It applies to all users of the Service regardless of location, with specific provisions for California residents under the CCPA and for all users under PIPEDA (Canada's federal private-sector privacy law).</p>
+    <p>Questions or requests: <a href="mailto:hq@coutiv.com">hq@coutiv.com</a></p>
 
-    <p>
-      If you have questions about this policy, contact us at
-      <strong>hq@coutiv.com</strong>.
-    </p>
+    <h2>2. Information We Collect</h2>
 
-    <footer>
-      <a href="/">Home</a>
+    <h3>2.1 Information You Provide Directly</h3>
+    <ul>
+      <li><strong>Account credentials:</strong> email address and password (passwords are stored as a secure hash — never in plaintext)</li>
+      <li><strong>Profile information:</strong> display name and optional profile photo</li>
+      <li><strong>User-generated content:</strong> product comments you post, messages you send within groups, group names you create, and items you add to groups</li>
+      <li><strong>Communications:</strong> any messages you send us directly, such as support requests</li>
+    </ul>
+
+    <h3>2.2 Information We Collect Automatically</h3>
+    <p>When you use the Service, we automatically collect the following:</p>
+    <p><strong>Browsing and discovery behavior:</strong></p>
+    <ul>
+      <li>Products viewed, products saved or unsaved, and product detail pages opened</li>
+      <li>Search queries entered and search results clicked</li>
+      <li>Product categories browsed and categories you interact with</li>
+      <li>Outbound "Buy" link clicks — including the product ID, brand, and affiliate source parameter — when you are redirected to a third-party retailer website</li>
+    </ul>
+    <p><strong>Social and group activity:</strong></p>
+    <ul>
+      <li>Groups created, group invitations sent, and groups joined</li>
+      <li>Items added to or removed from a group</li>
+      <li>Votes cast on items within a group (like or dislike)</li>
+      <li>Comments posted on products</li>
+      <li>Messages sent within group chats</li>
+    </ul>
+    <p><strong>Device and session data:</strong></p>
+    <ul>
+      <li>Device type, operating system, and app version</li>
+      <li>IP address and approximate geographic region (derived from IP, not GPS)</li>
+      <li>Session identifiers, timestamps, session duration, and navigation paths</li>
+      <li>Crash reports and error logs</li>
+    </ul>
+    <p>We use this behavioral data to operate the Service, improve recommendations, and build a personal taste profile (our "taste graph") over time.</p>
+
+    <h3>2.3 Product and Brand Content</h3>
+    <p>The Coutiv catalog contains product information aggregated from publicly available brand and retailer websites. We do not collect personal information through this process.</p>
+
+    <h3>2.4 Information We Do Not Collect</h3>
+    <ul>
+      <li>Payment or financial information — all purchases are completed on third-party brand websites</li>
+      <li>Sensitive personal information such as race, ethnicity, health data, biometric data, or government ID numbers</li>
+      <li>Precise GPS location data</li>
+      <li>Personal information from anyone under the age of 13</li>
+    </ul>
+
+    <h2>3. How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+      <li>Create and maintain your account and verify your identity</li>
+      <li>Operate core features: product discovery, saving, category browsing, group creation and management, group chat, product comments, voting, and outbound affiliate linking</li>
+      <li>Build and continuously refine your personal taste profile to improve product recommendations and power AI-driven personalization features</li>
+      <li>Analyze aggregate and anonymized usage patterns to improve the Service and develop new features</li>
+      <li>Send transactional communications: account confirmation, password reset, group invitations, and security notifications</li>
+      <li>Monitor for spam, abuse, and violations of these policies</li>
+      <li>Comply with applicable law and enforce our Terms of Service</li>
+    </ul>
+    <p>We do not sell your personal information. We do not use your personal information to serve you third-party targeted advertising.</p>
+
+    <h2>4. How We Share Your Information</h2>
+
+    <h3>4.1 With Other Users (Limited)</h3>
+    <ul>
+      <li>Your display name and profile photo are visible to other users in groups you join</li>
+      <li>Items you add to a group, votes you cast, and comments you post on products are visible to other members of that group</li>
+      <li>Group messages are visible to all members of that group</li>
+    </ul>
+
+    <h3>4.2 Service Providers</h3>
+    <p>We work with third-party providers who help us operate the Service. Current providers include:</p>
+    <ul>
+      <li><strong>Supabase Inc.</strong> — database hosting, authentication, and row-level data security</li>
+      <li><strong>Analytics tools (e.g., PostHog)</strong> — behavioral event tracking and product analytics</li>
+      <li><strong>Email delivery providers</strong> — transactional and account-related emails</li>
+    </ul>
+
+    <h3>4.3 Affiliate Partners</h3>
+    <p>When you tap the "Buy" button in the App, you are redirected to a third-party brand or retailer website. We pass an affiliate tracking parameter to that site to attribute any resulting purchase for commission purposes. No personal information beyond a session or click identifier is shared with the retailer at redirect.</p>
+
+    <h3>4.4 Legal Requirements</h3>
+    <p>We may disclose information if required by applicable law, regulation, court order, or valid legal process.</p>
+
+    <h3>4.5 Business Transfers</h3>
+    <p>If Coutiv is acquired, merged, or undergoes a substantial asset transfer, user data may be transferred as part of that transaction. We will notify you by email or by a prominent notice in the App if this occurs.</p>
+
+    <h2>5. Data Retention</h2>
+    <p>We retain your personal information for as long as your account is active or as needed to provide the Service. If you request account deletion, we will delete your personal profile and associated data within 30 days, except where we are required to retain certain records for legal or compliance purposes.</p>
+    <p>Behavioral event data may be retained in aggregated or de-identified form after account deletion, as this data no longer identifies you individually.</p>
+
+    <h2>6. Data Security</h2>
+    <p>We implement the following technical and organizational measures to protect your personal information:</p>
+    <ul>
+      <li>Authentication via JSON Web Tokens (JWTs) with session expiry and secure refresh token management</li>
+      <li>Row-level security (RLS) enforced at the database level — users can only access their own data</li>
+      <li>Passwords stored as secure cryptographic hashes; never stored in plaintext</li>
+      <li>API keys and service credentials stored in environment variables; never committed to source code</li>
+      <li>Encrypted data transmission via HTTPS/TLS</li>
+    </ul>
+
+    <h2>7. Your Rights</h2>
+
+    <h3>7.1 All Users (PIPEDA — Canada)</h3>
+    <p>Under Canada's PIPEDA, you have the right to access, correct, or delete your personal information, withdraw consent to non-essential data processing, and file a complaint with the Office of the Privacy Commissioner of Canada at <a href="https://priv.gc.ca" target="_blank">priv.gc.ca</a>.</p>
+
+    <h3>7.2 California Residents (CCPA / CPRA)</h3>
+    <p>If you are a California resident, you have additional rights including the right to know, delete, correct, and opt out of sale or sharing of your personal information. We do not sell or share your personal information for cross-context behavioral advertising.</p>
+    <p>To exercise any of these rights, email <a href="mailto:hq@coutiv.com">hq@coutiv.com</a> with the subject line "Privacy Request." We will respond within 30 days.</p>
+
+    <h2>8. Children's Privacy</h2>
+    <p>The Service is not directed to anyone under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has created an account, please contact <a href="mailto:hq@coutiv.com">hq@coutiv.com</a>.</p>
+
+    <h2>9. Third-Party Websites</h2>
+    <p>The Service contains links to third-party brand and retailer websites. When you click the "Buy" button or any outbound product link, you leave Coutiv's Service and enter a third-party website governed by that party's own privacy policy and terms.</p>
+
+    <h2>10. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. If we make material changes, we will notify you by email or by displaying a prominent in-app notice at least 7 days before the changes take effect.</p>
+
+    <h2>11. Contact</h2>
+    <p>For privacy-related questions, access requests, correction requests, or deletion requests:</p>
+    <p><strong>Coutiv Inc.</strong><br>
+    Email: <a href="mailto:hq@coutiv.com">hq@coutiv.com</a> (Subject: "Privacy Request")<br>
+    Website: <a href="https://coutiv.com">coutiv.com</a><br>
+    Incorporated in Ontario, Canada</p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div>© 2026 Coutiv Inc.</div>
+    <div class="footer-links">
       <a href="/support.html">Support</a>
-    </footer>
-  </main>
+      <a href="/terms.html">Terms of Service</a>
+      <a href="mailto:hq@coutiv.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
